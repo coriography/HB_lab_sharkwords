@@ -20,12 +20,24 @@ let numWrong = 0;
 //
 const createDivsForChars = (word) => {
   // Replace this with your code
+  // pseudo:
+  // taking in a string
+  // loop through the string
+  for (let letter of word) {
+    // for every letter in the string: 
+    //       generate a div inside the section with the id = "word-container"
+    //       add class = "letter-box", class = letter in word
+    $('#word-container').append(`<p class="letter-box ${letter}"></p>`);
+  }    
 };
 
 // Loop over each letter in `ALPHABET` and generate buttons.
 //
-const generateLetterButtons = () => {
+const generateLetterButtons = (alpha) => {
   // Replace this with your code
+  for (char of alpha) {
+    $('#letter-buttons').append(`<button>${char}</button>`)
+  }
 };
 
 // Set the `disabled` property of `buttonEl` to `true.
@@ -70,7 +82,7 @@ const resetGame = () => {
   const word = 'hello';
 
   createDivsForChars(word);
-  generateLetterButtons();
+  generateLetterButtons(ALPHABET);
 
   $('button').on('click', (evt) => {
     const clickedBtn = $(evt.target);
