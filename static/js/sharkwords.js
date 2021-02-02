@@ -16,6 +16,7 @@ const WORDS = [
 
 let numWrong = 0;
 
+
 // Loop over the chars in `word` and create divs.
 //
 const createDivsForChars = (word) => {
@@ -46,18 +47,25 @@ const generateLetterButtons = (alpha) => {
 //
 const disableLetterButton = (buttonEl) => {
   // Replace this with your code
+  $(buttonEl).attr("disabled", true);
 };
 
 // Return `true` if `letter` is in the word.
 //
 const isLetterInWord = (letter) => {
   // Replace this with your code
+  const currChar = $(`p.${letter}`);
+  if (currChar[0]) {
+    return true;
+  }
+  // return $(`div.${letter}`)[0] !== undefined
 };
 
 // Called when `letter` is in word. Update contents of divs with `letter`.
 //
 const handleCorrectGuess = (letter) => {
   // Replace this with your code
+  $(`.letter-box.${letter}`).append(letter);
 };
 
 // Called when `letter` is not in word.
@@ -67,6 +75,14 @@ const handleCorrectGuess = (letter) => {
 //
 const handleWrongGuess = () => {
   // Replace this with your code
+  if (numWrong <= 4) {
+    numWrong += 1;
+    let sharkPhoto = $('img');
+    sharkPhoto.attr('src', `/static/images/guess${numWrong}.png`);
+  } else {
+    $(".letter-box").attr("disabled", true);
+    $("#play-again").css("display", "inline");
+  }
 };
 
 //  Reset game state. Called before restarting the game.
